@@ -25,16 +25,26 @@ public class Shop {
         }
     }
 
-    public void viewOffer(Offer offer) {
-
-        Log.d("Dagger", "Offer: " + offer.commodity
-                + ", price: " + offer.price
-                + ", start: " + offer.start
-                + ", expire: " + offer.expire
-                + ", stock: " + getItemStock(offer.commodity.item.name));
+    public void viewOffer(int index) {
+        Offer offer = offers.get(index);
+        StringBuilder sb = new StringBuilder("Offer{");
+        sb.append(offer.price)
+                .append(",").append(offer.price)
+                .append(",").append(offer.start)
+                .append(",").append(offer.expire);
+        for (Item item: offer.commodity.items) {
+            sb.append(",").append("Item{ ").append(item.name)
+                    .append(",").append(getItemStock(item.name))
+                    .append("}");
+        }
+        Log.d("Dagger", sb.toString());
     }
 
     private int getItemStock(String name) {
         return warehouse.getItemStock(name);
+    }
+
+    public int getOfferCount() {
+        return offers.size();
     }
 }

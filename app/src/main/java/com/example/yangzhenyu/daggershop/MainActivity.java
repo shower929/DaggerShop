@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
         ObjectGraph objectGraph = ObjectGraph.create(TaiwanShopModule.class);
         Shop shop = objectGraph.get(Shop.class);
         shop.listOffers();
+        int count = shop.getOfferCount();
+        for (int i = 0; i < count; i++) {
+            shop.viewOffer(i);
+        }
+
     }
 
 
